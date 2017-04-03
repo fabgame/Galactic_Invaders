@@ -13,11 +13,8 @@ local meteorList = {}
 ]]
 meteorsController.isDebug = true
 
---[[
-  *** FUNZIONI LOCALI ***
-]]
 
-function generateMeteors()
+function meteorsController.generateMeteors()
   -- genera tre meteoriti e li aggiunge alla lista
   for i=1,3 do
     local posX, posY = 130 * i, -100
@@ -38,9 +35,9 @@ end
   *** FUNZIONI GLOBALI ***
 ]]
 
-function meteorsController.load()
-  generateMeteors()
-end
+--function meteorsController.load()
+  --generateMeteors()
+--end
 
 function meteorsController.update(dt)
   for i,meteor in ipairs(meteorList) do
@@ -65,6 +62,10 @@ function meteorsController.draw()
         meteor:draw('fill')
     end
     love.graphics.setColor(255,255,255, 255)
+
+    if y>love.graphics.getHeight()+50 then
+      meteorsController.remove(meteor)
+    end
   end
 end
 
@@ -78,9 +79,13 @@ function meteorsController.remove(meteor)
   end
 
   -- se non esistono più meteoriti nella lista, rigenerali
-  if table.getn(meteorList) == 0 then
-    generateMeteors()
-  end
+--  if table.getn(meteorList) == 0 then
+  --  generateMeteors()
+  --end
+end
+
+function meteorsController.GenNumMeteors()
+  return table.getn(meteorList)
 end
 
 return meteorsController

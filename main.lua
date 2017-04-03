@@ -9,13 +9,16 @@ meteorsController = require ("meteorsController")
 function love.load(arg)
   backgroundController.load()
   playerController.load()
-  meteorsController.load()
+  --meteorsController.load()
 end
 
 function love.update(dt)
   backgroundController.update(dt)
   playerController.update(dt)
   meteorsController.update(dt)
+  if meteorsController.GenNumMeteors()==0 then
+    meteorsController.generateMeteors()
+  end
 end
 
 function love.draw()
