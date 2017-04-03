@@ -136,9 +136,9 @@ function playerController.update(dt)
   if (playerController.x < playerController.img:getWidth() / 2 - playerController.velX) then
     playerController.velX = 0
     playerController.x = playerController.img:getWidth() / 2
-  elseif (playerController.x > love.graphics.getWidth() - playerController.velX - playerController.img:getWidth() / 2) then
+  elseif (playerController.x > 512 - playerController.velX - playerController.img:getWidth() / 2) then
     playerController.velX = 0
-    playerController.x = love.graphics.getWidth() - playerController.img:getWidth() / 2
+    playerController.x = 512 - playerController.img:getWidth() / 2
   else
     if(playerController.velX > playerController.maxVel) then
       playerController.velX = playerController.maxVel
