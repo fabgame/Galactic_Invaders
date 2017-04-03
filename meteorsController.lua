@@ -20,8 +20,9 @@ function meteorsController.generateMeteors()
     local posX, posY = 130 * i, -100
     local img = love.graphics.newImage(sprites[i])
     local meteor = HC.circle(posX, posY, img:getWidth() / 2);
-    meteor.type = "Meteor"
+    meteor.type = "enemy"
     meteor.img = img
+    meteor.subtype= "meteor"
     meteor.points = 10 * i
     meteor.rotation = 0
     meteor.rotationSpeed = i

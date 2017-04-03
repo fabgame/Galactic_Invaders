@@ -5,6 +5,7 @@ isDebug = false;
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
 meteorsController = require ("meteorsController")
+enemiesController = require ("enemiesController")
 
 function love.load(arg)
   backgroundController.load()
@@ -16,8 +17,11 @@ function love.update(dt)
   backgroundController.update(dt)
   playerController.update(dt)
   meteorsController.update(dt)
+  enemiesController.update(dt)
+
   if meteorsController.GenNumMeteors()==0 then
-    meteorsController.generateMeteors()
+     meteorsController.generateMeteors()
+     enemiesController.generateEnemies()
   end
 end
 
@@ -25,6 +29,7 @@ function love.draw()
   backgroundController.draw()
   playerController.draw()
   meteorsController.draw()
+  enemiesController.draw()
   love.graphics.print(string.format("Press 'p' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
 end
 
