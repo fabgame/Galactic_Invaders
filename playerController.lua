@@ -8,6 +8,7 @@ local meteorsController = require ("meteorsController")
 local playerController = {}
 
 local sprite = "assets/player.png"
+local fire = "assets/fire03.png"
 local bulletSprite = "assets/laser01.png"
 local bulletAudioSource = "assets/laser01.wav"
 local meteorExplosionAudioSource = "assets/meteorExplosion.wav"
@@ -102,6 +103,7 @@ end
 -- inizializza i dati della navicella
 function playerController.load()
   playerController.img = love.graphics.newImage(sprite)
+  playerController.fire = love.graphics.newImage(fire)
   playerController.x = love.graphics.getWidth() / 2
   playerController.y = love.graphics.getHeight() - 80
 
@@ -218,7 +220,9 @@ function playerController.draw()
   end
 
   love.graphics.draw(playerController.img, playerController.x, playerController.y, 0, 1, 1, playerController.img:getWidth() / 2, playerController.img:getHeight() / 2)
-
+  love.graphics.setColor(255, love.math.random(255), 0, love.math.random(255))
+  love.graphics.draw(playerController.fire, playerController.x, playerController.y+55, 0, 1, 1, playerController.fire:getWidth() / 2, playerController.fire:getHeight() / 2)
+  love.graphics.setColor(255,255,255,255)
   drawBullets()
 
   -- se in debug mode, mostra gli elementi di HC
