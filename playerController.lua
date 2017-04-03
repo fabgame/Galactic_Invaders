@@ -57,13 +57,17 @@ local function updateBullets(dt)
     end
 
     for shape, delta in pairs(HC.collisions(bullet)) do
-      if(shape.type == "Meteor") then
+      if(shape.type == "enemy") then
         -- print("Collision with: " .. shape.type .. "(" .. shape.points .. " points)")
         points = points + shape.points
 
         -- distrugge il meteorite
         HC.remove(shape)
-        meteorsController.remove(shape)
+        if shape.subtype == "meteor" then
+          meteorsController.remove(shape)
+        elseif shape.subtype == "ship" then
+          enemiesController.remove(shape)
+        end
         love.audio.newSource(meteorExplosionAudioSource, "static"):play()
 
         -- distrugge il proiettile
@@ -187,12 +191,17 @@ function playerController.update(dt)
   updateBullets(dt)
 
   for shape, delta in pairs(HC.collisions(playerController.shapeHC)) do
-    if(shape.type == "Meteor") then
+    if(shape.type == "enemy") then
 
       -- distrugge il meteorite
       HC.remove(shape)
-      meteorsController.remove(shape)
-      meteorsController.remove(playerController.shapeHC)
+      if shape.subtype == "meteor" then
+        meteorsController.remove(shape)
+        meteorsController.remove(playerController.shapeHC)
+      elseif shape.subtype == "ship" then
+        enemiesController.remove(shape)
+        enemiesController.remove(playerController.shapeHC)
+      end
       love.audio.newSource(explosionAudioSource, "static"):play()
       playerController.status = "game over"
     end
