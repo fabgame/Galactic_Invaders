@@ -20,7 +20,7 @@ function love.update(dt)
   enemiesController.update(dt)
 
   if meteorsController.GenNumMeteors()==0 and enemiesController.GenNumEnemies() == 0 then
-    if math.random(0, 10) >5 then
+    if love.math.random(10) >5 then
         meteorsController.generateMeteors()
     else
         enemiesController.generateEnemies()
