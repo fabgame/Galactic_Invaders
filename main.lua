@@ -1,6 +1,7 @@
 local HC = require "libs.HC"
 
-isDebug = false;
+isDebug = false
+isPaused = false
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -14,6 +15,10 @@ function love.load(arg)
 end
 
 function love.update(dt)
+  if love.keypressed("p") then
+    isPaused = not isPaused
+    return
+  end
   backgroundController.update(dt)
   playerController.update(dt)
   meteorsController.update(dt)
@@ -33,7 +38,7 @@ function love.draw()
   playerController.draw()
   meteorsController.draw()
   enemiesController.draw()
-  love.graphics.print(string.format("Press 'p' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
+  love.graphics.print(string.format("Press 'h' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -48,10 +53,9 @@ function love.keypressed(key, scancode, isrepeat)
     playerController.fireBullet()
   end
 
-  if(key == "p") then
+  if(key == "h") then
     isDebug = not isDebug
     playerController.isDebug = isDebug
     meteorsController.isDebug = isDebug
   end
-
 end
