@@ -3,7 +3,7 @@ local HC = require "libs.HC"
 --[[
   *** VARIABILI LOCALI ***
 ]]
-local meteorsController = {}
+local enemiesController = {}
 
 local sprites = {"assets/meteor1.png", "assets/meteor2.png", "assets/meteor3.png"}
 local meteorList = {}
@@ -11,10 +11,10 @@ local meteorList = {}
 --[[
   *** VARIABILI GLOBALI ***
 ]]
-meteorsController.isDebug = true
+enemiesController.isDebug = true
 
 
-function meteorsController.generateMeteors()
+function enemiesController.generateMeteors()
   -- genera tre meteoriti e li aggiunge alla lista
   for i=1,3 do
     local posX, posY = 130 * i, -100
@@ -35,11 +35,11 @@ end
   *** FUNZIONI GLOBALI ***
 ]]
 
---function meteorsController.load()
+--function enemiesController.load()
   --generateMeteors()
 --end
 
-function meteorsController.update(dt)
+function enemiesController.update(dt)
   for i,meteor in ipairs(meteorList) do
     meteor.rotation = meteor.rotation + meteor.rotationSpeed * dt
 
@@ -49,7 +49,7 @@ function meteorsController.update(dt)
   end
 end
 
-function meteorsController.draw()
+function enemiesController.draw()
   for i,meteor in ipairs(meteorList) do
     local x, y = meteor:center()
     love.graphics.draw(meteor.img, x, y, meteor.rotation, 1, 1, meteor.img:getWidth() / 2, meteor.img:getHeight() / 2)
@@ -64,12 +64,12 @@ function meteorsController.draw()
     love.graphics.setColor(255,255,255, 255)
 
     if y>love.graphics.getHeight()+50 then
-      meteorsController.remove(meteor)
+      enemiesController.remove(meteor)
     end
   end
 end
 
-function meteorsController.remove(meteor)
+function enemiesController.remove(meteor)
   -- rimuove un meteorite dalla lista
   for i,value in ipairs(meteorList) do
     if meteor == value then
@@ -84,8 +84,8 @@ function meteorsController.remove(meteor)
   --end
 end
 
-function meteorsController.GenNumMeteors()
+function enemiesController.GenNumMeteors()
   return table.getn(meteorList)
 end
 
-return meteorsController
+return enemiesController
