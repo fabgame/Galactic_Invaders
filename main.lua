@@ -9,12 +9,14 @@ meteorsController = require ("meteorsController")
 enemiesController = require ("enemiesController")
 
 function love.load(arg)
+  music = love.audio.newSource("assets/Linkin Park - Points Of Authority.mp3")
   backgroundController.load()
   playerController.load()
   --meteorsController.load()
 end
 
 function love.update(dt)
+  music:play()
   if isPaused then return
   end
 
