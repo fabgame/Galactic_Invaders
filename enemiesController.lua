@@ -26,7 +26,7 @@ function enemiesController.generateEnemies()
     enemy.points = 10 * i
     --meteor.rotation = 0
     --meteor.rotationSpeed = i
-    enemy.speed = love.math.random(100, 200)
+    enemy.speed = love.math.random(300, 400)
 
     table.insert(enemyList, enemy)
   end
