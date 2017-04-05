@@ -44,6 +44,11 @@ function backgroundController.load()
   layer1b.pos = layer1a.pos - backgroundController.img:getHeight()
   layer2a.pos = 0
   layer2b.pos = layer2a.pos - backgroundController.img:getHeight()
+
+  cassa = dofile("cassa.lua")
+  frame = 1;  -- definisci il frame selezionato
+  frameDuration = 0.10  -- definisci la durata di un frame
+  timeElapsed = 0 -- calcola il tempo per il cambiamento dei frame
 end
 
 function backgroundController.update(dt)
@@ -64,7 +69,16 @@ function backgroundController.update(dt)
   if(layer2b.pos >= backgroundController.img:getHeight()) then
     layer2b.pos = layer2a.pos - backgroundController.img:getHeight()
   end
-end
+
+    timeElapsed = timeElapsed + dt -- aggiorna il tempo passato dall'ultimo cambio di frame
+    if(timeElapsed >= frameDuration) then -- se è ora di cambiare frame...
+      frame = frame + 1 -- ... aggiorna l'indice
+      if frame > table.getn(cassa.animations) then -- se l'indice va oltre il numero di element dell'animazione...
+        frame = 1 -- ... ritorna al primo frame
+      end
+      timeElapsed = 0 -- azzera il contatore del tempo
+    end
+  end
 
 function backgroundController.draw()
   love.graphics.draw(backgroundController.img3, 512,0)
@@ -74,6 +88,8 @@ function backgroundController.draw()
   love.graphics.draw(backgroundController.img2, layer2a.quad, 0, layer2a.pos)
   love.graphics.draw(backgroundController.img2, layer2b.quad, 0, layer2b.pos)
   love.graphics.setColor(255, 255, 255, 255)
+  image = love.graphics.newImage(cassa.animations[frame]) -- carica l'immagine corretta dalla mappa
+  love.graphics.draw(image, 512, 267) -- disegna l'immagine a schermo
 end
 
 return backgroundController
