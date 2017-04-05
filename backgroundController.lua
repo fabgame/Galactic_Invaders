@@ -81,6 +81,10 @@ function backgroundController.update(dt)
   end
 
 function backgroundController.draw()
+  love.graphics.setColor(255,255,0,255)
+  love.graphics.setFont(font)
+  love.graphics.print("Press \"P\" for pause \n the game", 512, love.graphics.getHeight()-100)
+  love.graphics.setColor(255,255,255,255)
   love.graphics.draw(backgroundController.img3, 512,0)
   love.graphics.draw(backgroundController.img, layer1a.quad, 0, layer1a.pos)
   love.graphics.draw(backgroundController.img, layer1b.quad, 0, layer1b.pos)

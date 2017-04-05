@@ -236,7 +236,7 @@ function playerController.draw()
 
   love.graphics.setColor(0,0,255,255)
 
-love.graphics.setFont(font)
+  love.graphics.setFont(font)
 
   love.graphics.print("Points: " .. points, 600, love.graphics.getHeight() - 30)
   love.graphics.setColor(255,255,255,255)

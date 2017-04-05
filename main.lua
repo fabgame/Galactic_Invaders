@@ -15,8 +15,6 @@ function love.load(arg)
 
   font = love.graphics.newFont("assets/kenvector_future.ttf", 20)
 
-
-  --meteorsController.load()
 end
 
 function love.update(dt)
@@ -47,7 +45,7 @@ function love.draw()
 end
 
 function love.keypressed(key, scancode, isrepeat)
-  -- se è premuto 'escape' chiude uil gioco
+  -- se è premuto 'escape' chiude il gioco
   if(key == "escape") then
     love.event.push('quit')
   end
