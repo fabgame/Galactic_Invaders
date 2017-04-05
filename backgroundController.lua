@@ -20,6 +20,7 @@ local layer2Speed = 3
 
 local sprite = "assets/bg1.png"
 local sprite2 = "assets/bg3.png"
+local sprite3 = "assets/cornice_titolo.png"
 
 --[[
   *** FUNZIONI LOCALI ***
@@ -33,6 +34,7 @@ local sprite2 = "assets/bg3.png"
 function backgroundController.load()
   backgroundController.img = love.graphics.newImage(sprite)
   backgroundController.img2 = love.graphics.newImage(sprite2)
+  backgroundController.img3 = love.graphics.newImage(sprite3)
 
   layer1a.quad = love.graphics.newQuad(0, 0, backgroundController.img:getWidth(), backgroundController.img:getHeight(), backgroundController.img:getDimensions())
   layer1b.quad = love.graphics.newQuad(0, 0, backgroundController.img:getWidth(), backgroundController.img:getHeight(), backgroundController.img:getDimensions())
@@ -65,6 +67,7 @@ function backgroundController.update(dt)
 end
 
 function backgroundController.draw()
+  love.graphics.draw(backgroundController.img3, 512,0)
   love.graphics.draw(backgroundController.img, layer1a.quad, 0, layer1a.pos)
   love.graphics.draw(backgroundController.img, layer1b.quad, 0, layer1b.pos)
   love.graphics.setColor(255, 255, 255, 100)

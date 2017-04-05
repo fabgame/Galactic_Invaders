@@ -1,6 +1,7 @@
 local HC = require "libs.HC"
 
-isDebug = false;
+isDebug = false
+isPaused = false
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -8,12 +9,17 @@ meteorsController = require ("meteorsController")
 enemiesController = require ("enemiesController")
 
 function love.load(arg)
+  music = love.audio.newSource("assets/Linkin Park - Points Of Authority.mp3")
   backgroundController.load()
   playerController.load()
   --meteorsController.load()
 end
 
 function love.update(dt)
+  music:play()
+  if isPaused then return
+  end
+
   backgroundController.update(dt)
   playerController.update(dt)
   meteorsController.update(dt)
@@ -33,7 +39,7 @@ function love.draw()
   playerController.draw()
   meteorsController.draw()
   enemiesController.draw()
-  love.graphics.print(string.format("Press 'p' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
+  love.graphics.print(string.format("Press 'd' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
 end
 
 function love.keypressed(key, scancode, isrepeat)
@@ -48,10 +54,12 @@ function love.keypressed(key, scancode, isrepeat)
     playerController.fireBullet()
   end
 
-  if(key == "p") then
+  if(key == "d") then
     isDebug = not isDebug
     playerController.isDebug = isDebug
     meteorsController.isDebug = isDebug
   end
-
+  if (key=="p") then
+    isPaused=not isPaused
+  end
 end
