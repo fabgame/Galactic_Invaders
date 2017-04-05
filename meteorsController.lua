@@ -26,7 +26,7 @@ function meteorsController.generateMeteors()
     meteor.points = 10 * i
     meteor.rotation = 0
     meteor.rotationSpeed = i
-    meteor.speed = love.math.random(100, 200)
+    meteor.speed = love.math.random(300, 400)
 
     table.insert(meteorList, meteor)
   end
