@@ -12,6 +12,10 @@ function love.load(arg)
   music = love.audio.newSource("assets/Linkin Park - Points Of Authority.mp3")
   backgroundController.load()
   playerController.load()
+
+  font = love.graphics.newFont("assets/kenvector_future.ttf", 20)
+
+
   --meteorsController.load()
 end
 
@@ -39,7 +43,7 @@ function love.draw()
   playerController.draw()
   meteorsController.draw()
   enemiesController.draw()
-  love.graphics.print(string.format("Press 'd' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
+
 end
 
 function love.keypressed(key, scancode, isrepeat)
