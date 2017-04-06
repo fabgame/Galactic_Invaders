@@ -10,6 +10,7 @@ local playerController = {}
 local sprite = "assets/player.png"
 local fire = "assets/fire03.png"
 local bulletSprite = "assets/laser01.png"
+local life = "assets/player_50.png"
 local bulletAudioSource = "assets/laser01.wav"
 local meteorExplosionAudioSource = "assets/meteorExplosion.wav"
 local explosionAudioSource = "assets/explosion.wav"
@@ -106,6 +107,7 @@ function playerController.load()
   playerController.fire = love.graphics.newImage(fire)
   playerController.x = love.graphics.getWidth() / 2
   playerController.y = love.graphics.getHeight() - 80
+  playerController.life = love.graphics.newImage(life)
 
   -- crea il poligono per le collisioni
   playerController.shapeHC = HC.polygon(0, -60, playerController.img:getWidth() / 2, 0, -playerController.img:getWidth() / 2, 0)
@@ -224,6 +226,7 @@ function playerController.draw()
   love.graphics.setColor(255, love.math.random(255), 0, love.math.random(255))
   love.graphics.draw(playerController.fire, playerController.x, playerController.y+55, 0, 1, 1, playerController.fire:getWidth() / 2, playerController.fire:getHeight() / 2)
   love.graphics.setColor(255,255,255,255)
+  love.graphics.draw(playerController.life, 600, 525)
   drawBullets()
 
   -- se in debug mode, mostra gli elementi di HC
