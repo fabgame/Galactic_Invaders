@@ -29,6 +29,7 @@ playerController.dec = 0.4
 playerController.maxVel = 8
 playerController.isDebug = true
 playerController.status = "play"
+playerController.lives=3
 
 --[[
   *** FUNZIONI LOCALI ***
