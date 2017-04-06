@@ -2,6 +2,7 @@ local HC = require "libs.HC"
 
 isDebug = false
 isPaused = false
+isPaused_music =false
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -19,6 +20,10 @@ end
 
 function love.update(dt)
   music:play()
+  if isPaused_music then
+    music:stop()
+  end
+
   if isPaused then return
   end
 
@@ -61,7 +66,12 @@ function love.keypressed(key, scancode, isrepeat)
     playerController.isDebug = isDebug
     meteorsController.isDebug = isDebug
   end
+
   if (key=="p") then
     isPaused=not isPaused
+  end
+
+  if (key=="m") then
+    isPaused_music=not isPaused_music
   end
 end
