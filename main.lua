@@ -56,7 +56,7 @@ function love.keypressed(key, scancode, isrepeat)
     playerController.fireBullet()
   end
 
-  if(key == "d") then
+  if(key == "c") then
     isDebug = not isDebug
     playerController.isDebug = isDebug
     meteorsController.isDebug = isDebug

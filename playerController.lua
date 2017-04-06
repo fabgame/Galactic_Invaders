@@ -115,7 +115,7 @@ end
 function playerController.update(dt)
 
   -- se il gioco è finito, ritorna senza aggiornare nulla
-  if playerController.status == "game over" then
+  if playerController.status == "game over" then points=0;
     return
   end
 
