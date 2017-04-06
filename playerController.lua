@@ -213,9 +213,10 @@ end
 
 function playerController.draw()
   -- se il gioco è finito, ritorna senza disegnare nulla
+  love.graphics.setFont(font)
   if playerController.status == "game over" then
-    love.graphics.printf("GAME OVER", 0, love.graphics.getHeight() / 2, love.graphics.getWidth(), "center")
-    love.graphics.printf("Press spacebar to play again", 0, love.graphics.getHeight() / 2 + 20, love.graphics.getWidth(), "center")
+    love.graphics.printf("GAME OVER\n", 0, love.graphics.getHeight() / 2-40, love.graphics.getWidth()-280, "center")
+    love.graphics.printf("\nPress spacebar to play again", 0, love.graphics.getHeight() / 2-40 + 20, love.graphics.getWidth()-280, "center")
     return
   end
 

@@ -32,6 +32,7 @@ local sprite3 = "assets/cornice_titolo.png"
 
 -- inizializza i dati dello sfondo
 function backgroundController.load()
+  font2 = love.graphics.newFont("assets/kenvector_future.ttf", 13)
   backgroundController.img = love.graphics.newImage(sprite)
   backgroundController.img2 = love.graphics.newImage(sprite2)
   backgroundController.img3 = love.graphics.newImage(sprite3)
@@ -82,8 +83,10 @@ function backgroundController.update(dt)
 
 function backgroundController.draw()
   love.graphics.setColor(255,255,0,255)
-  love.graphics.setFont(font)
-  love.graphics.print("Press \"P\" for pause \n the game", 512, love.graphics.getHeight()-100)
+  love.graphics.setFont(font2)
+  love.graphics.print("Press \"P\" to PAUSE the game", 512, love.graphics.getHeight()-150)
+  love.graphics.print("Press \"ESC\" to EXIT the game", 512, love.graphics.getHeight()-100)
+  love.graphics.print("Press \"D\" to view collisions", 512, love.graphics.getHeight()-200)
   love.graphics.setColor(255,255,255,255)
   love.graphics.draw(backgroundController.img3, 512,0)
   love.graphics.draw(backgroundController.img, layer1a.quad, 0, layer1a.pos)
