@@ -63,8 +63,8 @@ function select.update(dt) -- update
     select.img[7] = select.img[7]
     select.img[8] = select.img[8]
   end
-
-  function love.keypressed(key, unicode)
+end
+  function select.keypressed(key, unicode)
     if (love.keyboard.isDown("left")) then
       ship = ship - 1
       audio1:play()
@@ -103,7 +103,6 @@ function select.update(dt) -- update
       gameState = "playing"
     end
   end
-end
 
 function select.draw() -- draw
   love.graphics.setColor(menuColor_n.r,menuColor_n.g,menuColor_n.b,menuColor_n.a)
