@@ -134,35 +134,34 @@ function love.draw()
     enemiesController.draw()
 
     love.graphics.print(string.format("Press 'h' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
-      function love.keypressed(key, scancode, isrepeat)
-        -- se è premuto 'escape' chiude il gioco
-        if(key == "p") then
-          isPaused=not isPaused
-          audio3:play()
-          gameState = "paused"
-        end
+ end
+end
 
-        -- se premuto chiude il gioco
-        if(key == "escape") then
-          gameState = "gameOver"
-          audio3:play()
-        end
+function love.keypressed(key, scancode, isrepeat)
+  -- se è premuto 'escape' chiude il gioco
+  if(key == "escape") then
+    love.event.push('quit')
+  end
 
-        if(key == "space" and playerController.status == "game over") then
-          playerController.status = "play"
-        elseif(key == "space") then
-          playerController.fireBullet()
-        end
+  if(key == "space" and playerController.status == "game over") then
+    playerController.lives=3
+    playerController.status = "play"
+  elseif(key == "space") then
+    playerController.fireBullet()
+  end
 
-        if (key=="m") then
-          isPaused_music=not isPaused_music
-        end
+  if(key == "c") then
+    isDebug = not isDebug
+    playerController.isDebug = isDebug
+    meteorsController.isDebug = isDebug
+  end
 
-        if(key == "c") then
-          isDebug = not isDebug
-          playerController.isDebug = isDebug
-          meteorsController.isDebug = isDebug
-        end
-      end
-    end
+  if (key=="p") then
+    isPaused=not isPaused
+  end
+
+  if (key=="m") then
+    isPaused_music=not isPaused_music
+  end
+
 end
