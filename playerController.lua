@@ -29,7 +29,7 @@ playerController.dec = 0.4
 playerController.maxVel = 8
 playerController.isDebug = true
 playerController.status = "play"
-playerController.lives=3
+playerController.lives = 3
 
 --[[
   *** FUNZIONI LOCALI ***
@@ -208,7 +208,11 @@ function playerController.update(dt)
         enemiesController.remove(playerController.shapeHC)
       end
       love.audio.newSource(explosionAudioSource, "static"):play()
-      playerController.status = "game over"
+      playerController.lives = playerController.lives-1
+      -- playerController.status = "play"
+      if (playerController.lives<=0) then
+        playerController.status = "game over"
+      end
     end
   end
 
@@ -239,11 +243,12 @@ function playerController.draw()
   end
 
 
-  love.graphics.setColor(0,0,255,255)
+  love.graphics.setColor(100,100,255,255)
 
   love.graphics.setFont(font)
 
   love.graphics.print("Points: " .. points, 600, love.graphics.getHeight() - 30)
+  love.graphics.print(playerController.lives, 670, love.graphics.getHeight() - 70)
   love.graphics.setColor(255,255,255,255)
 end
 
