@@ -31,7 +31,7 @@ function menu.load(arg)
 
   timer = 0 -- definisce il timer
   blinkTime = 0.6  -- definisce ogni quanto  "blinkare"
-  music = love.audio.newSource("assets/audio/ost/bensound.wav")
+  musicMenu = love.audio.newSource("assets/audio/ost/bensound.wav")
   audio1 = love.audio.newSource("assets/audio/fx_audio/select.wav")
   audio2 = love.audio.newSource("assets/audio/fx_audio/start.wav")
   audio3 = love.audio.newSource("assets/audio/fx_audio/escape.wav")

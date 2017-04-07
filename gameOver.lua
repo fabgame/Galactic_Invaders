@@ -12,10 +12,10 @@ function gameOver.draw()
   love.graphics.printf(text_4, 0, 350, love.graphics.getWidth(), "center")
 
   --  scelta per continuare a giocare
-  if (love.keyboard.isDown("y","Y")) then
+  if (love.keyboard.isDown("y")) then
     gameState = "playing"
     playerController.status = "play"
-  elseif (love.keyboard.isDown("n","N")) then
+  elseif (love.keyboard.isDown("n")) then
     gameState = "quit"
   end
 end
