@@ -56,6 +56,7 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
   if(key == "space" and playerController.status == "game over") then
+    playerController.lives=3
     playerController.status = "play"
   elseif(key == "space") then
     playerController.fireBullet()
