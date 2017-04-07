@@ -2,6 +2,7 @@ local HC = require "libs.HC"
 
 isDebug = false
 isPaused = false
+isPaused_music =false
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -15,12 +16,14 @@ function love.load(arg)
 
   font = love.graphics.newFont("assets/kenvector_future.ttf", 20)
 
-
-  --meteorsController.load()
 end
 
 function love.update(dt)
   music:play()
+  if isPaused_music then
+    music:stop()
+  end
+
   if isPaused then return
   end
 
@@ -47,7 +50,7 @@ function love.draw()
 end
 
 function love.keypressed(key, scancode, isrepeat)
-  -- se è premuto 'escape' chiude uil gioco
+  -- se è premuto 'escape' chiude il gioco
   if(key == "escape") then
     love.event.push('quit')
   end
@@ -58,12 +61,17 @@ function love.keypressed(key, scancode, isrepeat)
     playerController.fireBullet()
   end
 
-  if(key == "d") then
+  if(key == "c") then
     isDebug = not isDebug
     playerController.isDebug = isDebug
     meteorsController.isDebug = isDebug
   end
+
   if (key=="p") then
     isPaused=not isPaused
+  end
+
+  if (key=="m") then
+    isPaused_music=not isPaused_music
   end
 end

@@ -10,6 +10,7 @@ local playerController = {}
 local sprite = "assets/player.png"
 local fire = "assets/fire03.png"
 local bulletSprite = "assets/laser01.png"
+local life = "assets/player_50_2.png"
 local bulletAudioSource = "assets/laser01.wav"
 local meteorExplosionAudioSource = "assets/meteorExplosion.wav"
 local explosionAudioSource = "assets/explosion.wav"
@@ -28,6 +29,7 @@ playerController.dec = 0.4
 playerController.maxVel = 8
 playerController.isDebug = true
 playerController.status = "play"
+playerController.lives=3
 
 --[[
   *** FUNZIONI LOCALI ***
@@ -106,6 +108,7 @@ function playerController.load()
   playerController.fire = love.graphics.newImage(fire)
   playerController.x = love.graphics.getWidth() / 2
   playerController.y = love.graphics.getHeight() - 80
+  playerController.life = love.graphics.newImage(life)
 
   -- crea il poligono per le collisioni
   playerController.shapeHC = HC.polygon(0, -60, playerController.img:getWidth() / 2, 0, -playerController.img:getWidth() / 2, 0)
@@ -115,7 +118,7 @@ end
 function playerController.update(dt)
 
   -- se il gioco è finito, ritorna senza aggiornare nulla
-  if playerController.status == "game over" then
+  if playerController.status == "game over" then points=0;
     return
   end
 
@@ -213,9 +216,10 @@ end
 
 function playerController.draw()
   -- se il gioco è finito, ritorna senza disegnare nulla
+  love.graphics.setFont(font)
   if playerController.status == "game over" then
-    love.graphics.printf("GAME OVER", 0, love.graphics.getHeight() / 2, love.graphics.getWidth(), "center")
-    love.graphics.printf("Press spacebar to play again", 0, love.graphics.getHeight() / 2 + 20, love.graphics.getWidth(), "center")
+    love.graphics.printf("GAME OVER\n", 0, love.graphics.getHeight() / 2-40, love.graphics.getWidth()-280, "center")
+    love.graphics.printf("\nPress spacebar to play again", 0, love.graphics.getHeight() / 2-40 + 20, love.graphics.getWidth()-280, "center")
     return
   end
 
@@ -223,6 +227,7 @@ function playerController.draw()
   love.graphics.setColor(255, love.math.random(255), 0, love.math.random(255))
   love.graphics.draw(playerController.fire, playerController.x, playerController.y+55, 0, 1, 1, playerController.fire:getWidth() / 2, playerController.fire:getHeight() / 2)
   love.graphics.setColor(255,255,255,255)
+  love.graphics.draw(playerController.life, 600, 525)
   drawBullets()
 
   -- se in debug mode, mostra gli elementi di HC
@@ -236,7 +241,7 @@ function playerController.draw()
 
   love.graphics.setColor(0,0,255,255)
 
-love.graphics.setFont(font)
+  love.graphics.setFont(font)
 
   love.graphics.print("Points: " .. points, 600, love.graphics.getHeight() - 30)
   love.graphics.setColor(255,255,255,255)
