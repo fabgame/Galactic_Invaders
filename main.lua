@@ -47,14 +47,6 @@ function love.update(dt)
     timer = 0 -- azzera il timer
   end
 
-
-
-
-  backgroundController.update(dt)
-  playerController.update(dt)
-  meteorsController.update(dt)
-  enemiesController.update(dt)
-
   -- stato del gioco
     if gameState == "playing" then -- start game
       backgroundController.update(dt)
@@ -75,12 +67,12 @@ function love.update(dt)
         music:play()
       elseif gameState == "start" then  -- musica e press start
         musicMenu:play()
-        function love.keypressed(key, unicode)
+--        function love.keypressed(key, unicode)
           if (love.keyboard.isDown("return","space")) then
             audio4:play()
             gameState = "menu"
           end
-        end
+  --      end
       elseif gameState == "menu" then -- menu
         menu.update(dt)
 
@@ -164,4 +156,10 @@ function love.keypressed(key, scancode, isrepeat)
     isPaused_music=not isPaused_music
   end
 
+  if gameState == "select" then
+    select.keypressed(key, scancode)
+  end
+  if gameState == "menu" then
+    menu.keypressed(key, scancode)
+  end
 end

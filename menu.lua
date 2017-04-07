@@ -70,7 +70,8 @@ function menu.update(dt)
     menuColor_n = color3
     menuColor_q = color4
   end
-  function love.keypressed(key, unicode)
+end
+  function menu.keypressed(key, unicode)
     if (love.keyboard.isDown("up")) then
       selector = selector - 1
       audio1:play()
@@ -101,7 +102,6 @@ function menu.update(dt)
       gameState = "quit"
     end
   end
-end
 
 function menu.draw()
   -- new game
