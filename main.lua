@@ -125,7 +125,7 @@ function love.draw()
     meteorsController.draw()
     enemiesController.draw()
 
-    love.graphics.print(string.format("Press 'h' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
+    --love.graphics.print(string.format("Press 'h' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
  end
 end
 
@@ -150,10 +150,12 @@ function love.keypressed(key, scancode, isrepeat)
 
   if (key=="p") then
     isPaused=not isPaused
+    return
   end
 
   if (key=="m") then
     isPaused_music=not isPaused_music
+    music:stop()
   end
 
   if gameState == "select" then
