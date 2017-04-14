@@ -80,7 +80,6 @@ function love.update(dt)
         if isPaused_music then
           music:stop()
         end
-
         if isPaused then return
         end
         --[[function love.keypressed(key, unicode)
@@ -115,9 +114,9 @@ function love.draw()
   elseif gameState == "menu" then
     menu.draw()
 
-  elseif gameState == "paused" then -- pausa
-    button_paused()
-  elseif gameState == "select" then -- pausa
+  --elseif gameState == "paused" then -- pausa
+    --button_paused()
+  elseif gameState == "select" then
     select.draw()
   elseif gameState == "playing" then  -- grafica e funzioni del gioco
     backgroundController.draw()
@@ -149,8 +148,8 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
   if (key=="p") then
+    gameState="paused"
     isPaused=not isPaused
-    return
   end
 
   if (key=="m") then
