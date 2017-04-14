@@ -36,6 +36,7 @@ end
 
 function love.update(dt)
   if isPaused then return end
+  if isPaused_music then music:stop() end
   -- testo blink
   timer = timer + dt -- aggiunge al timer il tempo intercorso tra un frame e l'altro
 
@@ -156,7 +157,7 @@ function love.keypressed(key, scancode, isrepeat)
 
   if (key=="m") then
     isPaused_music=not isPaused_music
-    music:stop()
+    --music:stop()
   end
 
   if gameState == "select" then
