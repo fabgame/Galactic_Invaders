@@ -35,6 +35,7 @@ function love.load(arg)
 end
 
 function love.update(dt)
+  if isPaused then return end
   -- testo blink
   timer = timer + dt -- aggiunge al timer il tempo intercorso tra un frame e l'altro
 
@@ -76,12 +77,13 @@ function love.update(dt)
       elseif gameState == "menu" then -- menu
         menu.update(dt)
 
-      elseif gameState == "paused" then
-        if isPaused_music then
-          music:stop()
-        end
-        if isPaused then return
-        end
+      --elseif gameState == "paused" then
+        --if isPaused_music then
+          --music:stop()
+        --end
+        --if isPaused then return
+        --end
+
         --[[function love.keypressed(key, unicode)
           if (love.keyboard.isDown("return","escape","p")) then
             audio3:play()
@@ -148,7 +150,7 @@ function love.keypressed(key, scancode, isrepeat)
   end
 
   if (key=="p") then
-    gameState="paused"
+    --gameState="paused"
     isPaused=not isPaused
   end
 
