@@ -135,6 +135,7 @@ function love.keypressed(key, scancode, isrepeat)
     love.event.push('quit')
   end
 
+  if(playerController.status=="game over") then
     playerController.lives=3
     playerController.status = "play"
   elseif(key == "space") then
