@@ -15,7 +15,7 @@ menuStart = require ("menuStart")
 gameOver = require ("gameOver")
 
 function love.load(arg)
-  music = love.audio.newSource("assets/Linkin Park - Points Of Authority.mp3")
+  music = love.audio.newSource("assets/Linkin Park - Points Of Authority cut.mp3")
   backgroundController.load()
   playerController.load()
 
@@ -35,7 +35,10 @@ function love.load(arg)
 end
 
 function love.update(dt)
-  if isPaused then return end
+  if isPaused then
+    music:stop()
+    return
+  end
   if isPaused_music then music:stop() end
   -- testo blink
   timer = timer + dt -- aggiunge al timer il tempo intercorso tra un frame e l'altro
@@ -153,6 +156,7 @@ function love.keypressed(key, scancode, isrepeat)
   if (key=="p") then
     --gameState="paused"
     isPaused=not isPaused
+    isPaused_music=not isPaused_music
   end
 
   if (key=="m") then
