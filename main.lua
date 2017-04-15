@@ -3,6 +3,7 @@ local HC = require "libs.HC"
 isDebug = false
 isPaused = false
 isPaused_music =false
+zero_music = "assets/cassa/zero_music.png"
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -16,6 +17,7 @@ gameOver = require ("gameOver")
 
 function love.load(arg)
   music = love.audio.newSource("assets/Linkin Park - Points Of Authority cut.mp3")
+  img4 = love.graphics.newImage(zero_music)
   backgroundController.load()
   playerController.load()
 
@@ -102,13 +104,11 @@ function love.update(dt)
 end
 
 function love.draw()
-
-  if gameState == "start" then
+    if gameState == "start" then
     menuStart.draw()
   elseif gameState == "gameOver" then
     audio3:stop()
     gameOver.draw()
-
   elseif gameState == "credits" then
     audio1:stop()
     credits.draw()
@@ -129,7 +129,6 @@ function love.draw()
     playerController.draw()
     meteorsController.draw()
     enemiesController.draw()
-
     --love.graphics.print(string.format("Press 'h' key to enter HC debug mode (currently set to: %s)", isDebug), 10, 10)
  end
 end
@@ -161,7 +160,7 @@ function love.keypressed(key, scancode, isrepeat)
 
   if (key=="m") then
     isPaused_music=not isPaused_music
-    --music:stop()
+    love.graphics.draw(img4, 512, 400)
   end
 
   if gameState == "select" then

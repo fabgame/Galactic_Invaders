@@ -5,6 +5,7 @@ local backgroundController = {}
 ]]
 
 backgroundController.img = nil
+backgroundController.img4 = nil
 
 --[[
   *** VARIABILI LOCALI ***
@@ -21,6 +22,7 @@ local layer2Speed = 3
 local sprite = "assets/bg1.png"
 local sprite2 = "assets/bg3.png"
 local sprite3 = "assets/cornice_titolo.png"
+local zero_music = "assets/cassa/zero_music.png"
 
 --[[
   *** FUNZIONI LOCALI ***
@@ -36,6 +38,7 @@ function backgroundController.load()
   backgroundController.img = love.graphics.newImage(sprite)
   backgroundController.img2 = love.graphics.newImage(sprite2)
   backgroundController.img3 = love.graphics.newImage(sprite3)
+  backgroundController.img4 = love.graphics.newImage(zero_music)
 
   layer1a.quad = love.graphics.newQuad(0, 0, backgroundController.img:getWidth(), backgroundController.img:getHeight(), backgroundController.img:getDimensions())
   layer1b.quad = love.graphics.newQuad(0, 0, backgroundController.img:getWidth(), backgroundController.img:getHeight(), backgroundController.img:getDimensions())
