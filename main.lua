@@ -3,7 +3,6 @@ local HC = require "libs.HC"
 isDebug = false
 isPaused = false
 isPaused_music =false
-zero_music = "assets/cassa/zero_music.png"
 
 playerController = require ("playerController")
 backgroundController = require ("backgroundController")
@@ -17,7 +16,6 @@ gameOver = require ("gameOver")
 
 function love.load(arg)
   music = love.audio.newSource("assets/Linkin Park - Points Of Authority cut.mp3")
-  img4 = love.graphics.newImage(zero_music)
   backgroundController.load()
   playerController.load()
 
@@ -37,12 +35,12 @@ function love.load(arg)
 end
 
 function love.update(dt)
-  if isPaused then
-    music:stop()
-    return
+  if isPaused then music:stop()  return
+  elseif isPaused_music then music:stop()
+  elseif (isPaused and isPaused_music) then music:stop() return
+  elseif (isPaused and not isPaused_music) then music:play() return
   end
-  if isPaused_music then music:stop() end
-  -- testo blink
+    -- testo blink
   timer = timer + dt -- aggiunge al timer il tempo intercorso tra un frame e l'altro
 
   if(timer >= blinkTime) then     -- se il timer ha superato il tempo di "blinking"...
@@ -155,12 +153,13 @@ function love.keypressed(key, scancode, isrepeat)
   if (key=="p") then
     --gameState="paused"
     isPaused=not isPaused
+    --isPaused_music=not isPaused_music
+  elseif (key=="m") then
     isPaused_music=not isPaused_music
-  end
-
-  if (key=="m") then
-    isPaused_music=not isPaused_music
-    love.graphics.draw(img4, 512, 400)
+    --love.graphics.draw(backgroundController.img4, 512, 400)
+  elseif ((key=="p")and(key=="m")) then
+    isPaused = not isPaused
+    isPaused_music = not isPaused_music
   end
 
   if gameState == "select" then

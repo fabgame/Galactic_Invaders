@@ -56,6 +56,11 @@ function backgroundController.load()
 end
 
 function backgroundController.update(dt)
+  if isPaused then music:play()  return
+  elseif isPaused_music then music:stop()
+  elseif (isPaused and isPaused_music) then music:stop() return
+  elseif (isPaused and not isPaused_music) then music:play() return
+  end
   layer1a.pos = layer1a.pos + layer1Speed
   layer1b.pos = layer1b.pos + layer1Speed
   layer2a.pos = layer2a.pos + layer2Speed
@@ -99,8 +104,9 @@ function backgroundController.draw()
   love.graphics.draw(backgroundController.img2, layer2a.quad, 0, layer2a.pos)
   love.graphics.draw(backgroundController.img2, layer2b.quad, 0, layer2b.pos)
   love.graphics.setColor(255, 255, 255, 255)
-  image = love.graphics.newImage(cassa.animations[frame]) -- carica l'immagine corretta dalla mappa
-  love.graphics.draw(image, 512, 267) -- disegna l'immagine a schermo
+  image = love.graphics.newImage(cassa.animations[frame])
+  if isPaused_music then love.graphics.draw(backgroundController.img4, 512, 267) -- carica l'immagine corretta dalla mappa
+  else love.graphics.draw(image, 512, 267) end-- disegna l'immagine a schermo
 end
 
 return backgroundController
