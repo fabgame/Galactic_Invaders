@@ -35,7 +35,7 @@ function love.load(arg)
 end
 
 function love.update(dt)
-  if isPaused then music:stop()  return
+  if isPaused then music:pause()  return
   elseif isPaused_music then music:stop()
   elseif (isPaused and isPaused_music) then music:stop() return
   elseif (isPaused and not isPaused_music) then music:play() return
@@ -83,7 +83,7 @@ function love.update(dt)
 
       --elseif gameState == "paused" then
         --if isPaused_music then
-          --music:stop()
+          --music:pause()
         --end
         --if isPaused then return
         --end

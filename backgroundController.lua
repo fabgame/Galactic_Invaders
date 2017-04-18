@@ -61,6 +61,7 @@ function backgroundController.update(dt)
   elseif (isPaused and isPaused_music) then music:stop() return
   elseif (isPaused and not isPaused_music) then music:play() return
   end
+
   layer1a.pos = layer1a.pos + layer1Speed
   layer1b.pos = layer1b.pos + layer1Speed
   layer2a.pos = layer2a.pos + layer2Speed
