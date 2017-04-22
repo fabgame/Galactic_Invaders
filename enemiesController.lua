@@ -15,15 +15,15 @@ enemiesController.isDebug = true
 
 
 function enemiesController.generateEnemies()
-  -- genera tre meteoriti e li aggiunge alla lista
+  -- genera tre astronavi nemiche e li aggiunge alla lista
   for i=1,3 do
-    local posX, posY = 130 * i, -100
+    local posX, posY = (love.math.random(40, 150)) * i, -100
     local img = love.graphics.newImage(sprites[i])
     local enemy = HC.circle(posX, posY, img:getWidth() / 2);
     enemy.type = "enemy"
     enemy.subtype = "ship"
     enemy.img = img
-    enemy.points = 10 * i
+    enemy.points = 10
     --meteor.rotation = 0
     --meteor.rotationSpeed = i
     enemy.speed = love.math.random(400, 600)
