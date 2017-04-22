@@ -15,6 +15,7 @@ menuStart = require ("menuStart")
 gameOver = require ("gameOver")
 
 function love.load(arg)
+  love.keyboard.setKeyRepeat(true)
   music = love.audio.newSource("assets/Linkin Park - Points Of Authority cut.mp3")
   backgroundController.load()
   playerController.load()
@@ -131,7 +132,7 @@ function love.draw()
  end
 end
 
-function love.keypressed(key, scancode, isrepeat)
+function love.keypressed(key, isrepeat)
   -- se è premuto 'escape' chiude il gioco
   if(key == "escape") then
     love.event.push('quit')
