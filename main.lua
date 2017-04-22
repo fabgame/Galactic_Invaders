@@ -61,7 +61,7 @@ function love.update(dt)
       musicMenu:stop()
       music:play()
 
-        if meteorsController.GenNumMeteors()==0 and enemiesController.GenNumEnemies() == 0 then
+        if meteorsController.GenNumMeteors()==0 and enemiesController.GetNumEnemies() == 0 then
           if love.math.random(10) >5 then
             meteorsController.generateMeteors()
           else

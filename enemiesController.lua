@@ -13,9 +13,12 @@ local enemyList = {}
 ]]
 enemiesController.isDebug = true
 
+--[[
+  *** FUNZIONI GLOBALI ***
+]]--
 
 function enemiesController.generateEnemies()
-  -- genera tre astronavi nemiche e li aggiunge alla lista
+  -- genera  astronavi nemiche e li aggiunge alla lista
   for i=1,4 do
     local posX, posY = (love.math.random(30, 110)) * i, -100
     local img = love.graphics.newImage(sprites[i])
@@ -24,26 +27,13 @@ function enemiesController.generateEnemies()
     enemy.subtype = "ship"
     enemy.img = img
     enemy.points = 10
-    --meteor.rotation = 0
-    --meteor.rotationSpeed = i
     enemy.speed = love.math.random(400, 600)
-
-    table.insert(enemyList, enemy)
+     table.insert(enemyList, enemy)
   end
 end
 
---[[
-  *** FUNZIONI GLOBALI ***
-]]
-
---function enemiesController.load()
-  --generateMeteors()
---end
-
 function enemiesController.update(dt)
   for i,enemy in ipairs(enemyList) do
-    --meteor.rotation = meteor.rotation + meteor.rotationSpeed * dt
-
     local x, y = enemy:center()
     y = y + dt * enemy.speed
     enemy:moveTo(x, y)
@@ -71,21 +61,17 @@ function enemiesController.draw()
 end
 
 function enemiesController.remove(enemy)
-  -- rimuove un meteorite dalla lista
+  -- rimuove un'astronave dalla lista
   for i,value in ipairs(enemyList) do
     if enemy == value then
       table.remove(enemyList, i)
-      break
+      break -- esce dal for
     end
   end
-
-  -- se non esistono più meteoriti nella lista, rigenerali
---  if table.getn(meteorList) == 0 then
-  --  generateMeteors()
-  --end
 end
 
-function enemiesController.GenNumEnemies()
+-- restituisce il numero di nemici nella tabella
+function enemiesController.GetNumEnemies()
   return table.getn(enemyList)
 end
 
