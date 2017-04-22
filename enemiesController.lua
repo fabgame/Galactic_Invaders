@@ -5,7 +5,7 @@ local HC = require "libs.HC"
 ]]
 local enemiesController = {}
 
-local sprites = {"assets/enemyBlack1.png", "assets/enemyGreen5.png", "assets/enemyRed4.png"}
+local sprites = {"assets/enemyBlack1.png", "assets/enemyGreen5.png", "assets/enemyRed4.png", "assets/enemyBlue2.png"}
 local enemyList = {}
 
 --[[
@@ -16,8 +16,8 @@ enemiesController.isDebug = true
 
 function enemiesController.generateEnemies()
   -- genera tre astronavi nemiche e li aggiunge alla lista
-  for i=1,3 do
-    local posX, posY = (love.math.random(40, 150)) * i, -100
+  for i=1,4 do
+    local posX, posY = (love.math.random(30, 110)) * i, -100
     local img = love.graphics.newImage(sprites[i])
     local enemy = HC.circle(posX, posY, img:getWidth() / 2);
     enemy.type = "enemy"
