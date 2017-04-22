@@ -20,7 +20,7 @@ enemiesController.isDebug = true
 function enemiesController.generateEnemies()
   -- genera  astronavi nemiche e li aggiunge alla lista
   for i=1,4 do
-    local posX, posY = (love.math.random(30, 110)) * i, -100
+    local posX, posY = (love.math.random(35, 115)) * i, -100
     local img = love.graphics.newImage(sprites[i])
     local enemy = HC.circle(posX, posY, img:getWidth() / 2);
     enemy.type = "enemy"
