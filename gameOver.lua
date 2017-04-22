@@ -4,7 +4,7 @@ function gameOver.draw()
   -- game over
   love.graphics.setFont(titoloMedio)
   love.graphics.setColor(222, 33, 57, 255)
-  love.graphics.printf(text_3, 0, 160, love.graphics.getWidth(), "center")
+  love.graphics.printf(text_3, 0, 160, love.graphics.getWidth(), "center") --love.graphics.getWidth() : wrap line
 
   -- insert coin
   love.graphics.setFont(sottotitolo)
