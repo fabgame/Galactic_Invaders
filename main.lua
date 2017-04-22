@@ -102,7 +102,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    if gameState == "start" then
+  if gameState == "start" then
     menuStart.draw()
   elseif gameState == "gameOver" then
     audio3:stop()
