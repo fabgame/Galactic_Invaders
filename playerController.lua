@@ -236,17 +236,18 @@ function playerController.update(dt)
       love.audio.newSource(explosionAudioSource, "static"):play()
       playerController.lives = playerController.lives-1
       -- playerController.status = "play"
-      if undead then if count<10 then count=count+1 else break end
-      playerController.status = "play"
-      else if (playerController.lives<=0) then
+      if undead then if count<10 then count=count+1 else undead=false; break end
+      playerController.status  = "play"
+      else
+        if (playerController.lives<=0) then
             playerController.status = "game over"
             end
       end
     end
   end
-  if (playerController.lives<=0) then
-        playerController.status = "game over"
-        end
+  --if (playerController.lives<=0) then
+    --    playerController.status = "game over"
+      --  end
 end
 
 function playerController.draw()
