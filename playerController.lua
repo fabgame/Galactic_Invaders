@@ -108,7 +108,7 @@ end
 
 -- inizializza i dati della navicella
 function playerController.load()
-  playerController.img = {love.graphics.newImage(sprite[1]),
+    playerController.img = {love.graphics.newImage(sprite[1]),
     love.graphics.newImage(sprite[2]),
     love.graphics.newImage(sprite[3]),
     love.graphics.newImage(sprite[4])
@@ -193,11 +193,8 @@ function playerController.update(dt)
   end
 
   -- se velY è estremamente piccola, per sicurezza, la setto a zero
-  if(
-    playerController.velY < 0.3 and
-    playerController.velY > -0.3
-  ) then
-    playerController.velY = 0
+  if (playerController.velY < 0.3 and playerController.velY > -0.3) then
+      playerController.velY = 0
   end
 
   -- controllo il movimento verticale (bordi, etc.)
@@ -210,10 +207,10 @@ function playerController.update(dt)
   else
     if(playerController.velY > playerController.maxVel) then
       playerController.velY = playerController.maxVel
-    elseif((playerController.velY < -playerController.maxVel)) then
+    elseif(playerController.velY < -playerController.maxVel) then
       playerController.velY = -playerController.maxVel
     end
-    playerController.y = playerController.y + playerController.velY
+      playerController.y = playerController.y + playerController.velY
   end
 
   playerController.shapeHC:moveTo(playerController.x, playerController.y)
