@@ -22,6 +22,8 @@ local explosionAudioSource = "assets/explosion.wav"
 local bulletList = {} -- tabella che conterrà i dati dei proiettili
 
 local points = 0
+local undead = false
+local count=0
 
 playerController.x = 0
 playerController.y = 0
@@ -34,6 +36,7 @@ playerController.maxVel = 9
 playerController.isDebug = true
 playerController.status = "play"
 playerController.lives = 3
+
 
 --[[
   *** FUNZIONI LOCALI ***
@@ -67,6 +70,7 @@ local function updateBullets(dt)
       if(shape.type == "enemy") then
         -- print("Collision with: " .. shape.type .. "(" .. shape.points .. " points)")
         points = points + shape.points
+        if points==500 then undead=true end
 
         -- distrugge il meteorite
         HC.remove(shape)
@@ -232,12 +236,17 @@ function playerController.update(dt)
       love.audio.newSource(explosionAudioSource, "static"):play()
       playerController.lives = playerController.lives-1
       -- playerController.status = "play"
-      if (playerController.lives<=0) then
-        playerController.status = "game over"
+      if undead then if count<10 then count=count+1 else break end
+      playerController.status = "play"
+      else if (playerController.lives<=0) then
+            playerController.status = "game over"
+            end
       end
     end
   end
-
+  if (playerController.lives<=0) then
+        playerController.status = "game over"
+        end
 end
 
 function playerController.draw()
